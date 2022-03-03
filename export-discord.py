@@ -11,7 +11,7 @@ def parse_csv(file_path):
         readCSV = csv.reader(f, delimiter=',')
         return list(readCSV)
 
-def export(root_dir, file_obj):
+def export(root_dir, messages_text_file):
     messages_dir = os.path.join(root_dir, "messages")
     message_channels = [x[0] for x in os.walk(messages_dir) if not os.path.split(x[0])[1] == "messages"]
     print("{} channels".format(len(message_channels)))
@@ -22,17 +22,21 @@ def export(root_dir, file_obj):
 
     print("{} messages".format(len(all_messages)))
 
-    json_build = {
-        "message-source": "discord",
-        "messages": all_messages
-    }
-
-    with open(file_obj, 'w') as file:
-        json.dump(json_build, file)
+    # Create the list of messages
+    messages_content = []
+    for message in all_messages:
+        if message[0] != "ID": # This is a CSV header, ignore this element then...
+            text = message[2]
+            messages_content.append(text)
+    
+    # Write it to a text file that contains every message
+    with open(messages_text_file, 'a') as file:
+        for line in messages_content:
+            file.write(f"{line}\n")
 
 if __name__ == "__main__":
     try:
         root_dir = sys.argv[1]
     except IndexError:
         sys.exit("Provide root Discord data export directory as argument.")
-    export(root_dir, "discord-messages.json")
+    export(root_dir, "messages")
