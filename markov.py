@@ -29,5 +29,7 @@ def markov(messages_text_file, length):
     return message
 
 if __name__ == "__main__":
-    m = markov("messages", int(sys.argv[1]))
-    print(m)
+    try:
+        print(markov(sys.argv[1], int(sys.argv[2])))
+    except IndexError:
+        sys.exit("Provide messages file and number of words that the generated message should have as arguments.")

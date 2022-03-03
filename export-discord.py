@@ -29,7 +29,7 @@ def export(root_dir, messages_text_file):
             text = message[2]
             messages_content.append(text)
     
-    # Write it to a text file that contains every message
+    # Append the messages to a text file that contains every message
     with open(messages_text_file, 'a') as file:
         for line in messages_content:
             file.write(f"{line}\n")
@@ -37,6 +37,7 @@ def export(root_dir, messages_text_file):
 if __name__ == "__main__":
     try:
         root_dir = sys.argv[1]
+        messages_file = sys.argv[2]
     except IndexError:
-        sys.exit("Provide root Discord data export directory as argument.")
-    export(root_dir, "messages")
+        sys.exit("Provide root Discord data export directory and messages file as arguments.")
+    export(root_dir, messages_file)

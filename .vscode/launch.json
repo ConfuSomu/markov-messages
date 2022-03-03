@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "args": ["15"]
+            "args": ["messages", "15"]
         },
         {
             "name": "Current File, Discord data dump",
@@ -18,7 +18,7 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "args": ["/Users/emile/ramdisk/discord data 2022-02-21"]
+            "args": ["/Users/emile/ramdisk/discord data 2022-02-21", "messages"]
         }
     ]
 }
