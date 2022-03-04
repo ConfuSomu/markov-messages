@@ -6,6 +6,11 @@ import csv
 import json
 import sys
 
+import format
+
+USAGE_MESSAGE = f"""Usage:
+    {sys.argv[0]} {format.ANSI.underline}root Discord data export directory{format.ANSI.reset} {format.ANSI.underline}messages file{format.ANSI.reset}"""
+
 def parse_csv(file_path):
     with open(file_path, "r", encoding="utf8") as f:
         readCSV = csv.reader(f, delimiter=',')
@@ -39,5 +44,5 @@ if __name__ == "__main__":
         root_dir = sys.argv[1]
         messages_file = sys.argv[2]
     except IndexError:
-        sys.exit("Provide root Discord data export directory and messages file as arguments.")
+        sys.exit(USAGE_MESSAGE)
     export(root_dir, messages_file)

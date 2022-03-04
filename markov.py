@@ -1,6 +1,11 @@
 import random
 import sys
 
+import format
+
+USAGE_MESSAGE = f"""Usage:
+    {sys.argv[0]} {format.ANSI.underline}messages file{format.ANSI.reset} {format.ANSI.underline}length (words) of generated message{format.ANSI.reset}"""
+
 # Generate a markov chain from a text file containing messages
 # length is the number of words that the generated message will contain
 # function taken from https://medium.com/analytics-vidhya/making-a-text-generator-using-markov-chains-e17a67225d10 or https://gist.github.com/hiowatah/7542d41740ebe7b3441b8634ea0501eb#file-markov_chains
@@ -32,4 +37,4 @@ if __name__ == "__main__":
     try:
         print(markov(sys.argv[1], int(sys.argv[2])))
     except IndexError:
-        sys.exit("Provide messages file and number of words that the generated message should have as arguments.")
+        sys.exit(USAGE_MESSAGE)
